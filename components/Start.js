@@ -61,6 +61,12 @@ const Start = ({ navigation }) => {
             <Text style={styles.btnSubmitText}>Start chatting</Text>
           </TouchableOpacity>
         </View>
+
+        {
+          Platform.OS === 'ios'
+            ? <KeyboardAvoidingView behavior='padding' />
+            : null
+        }
       </View>
     </ImageBackground>
   );
@@ -75,22 +81,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   mainHeadline: {
-    flex: 1,
     color: '#fff',
     fontSize: 44,
     fontWeight: 700,
     marginTop: 64
   },
   contentWrapper: {
-    flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
     flexDirection: 'column',
     justifyContent: 'space-around',
     marginBottom: 64,
+    padding: 16,
     width: '88%',
   },
   inputText: {
@@ -98,11 +104,12 @@ const styles = StyleSheet.create({
     color: '#757083',
     fontSize: 16,
     padding: 16,
-    width: '88%',
+    width: '100%',
   },
   colorHeadline: {
     color: '#757083',
     fontSize: 16,
+    marginTop: 16,
   },
   colorButtonWrapper: {
     alignItems: 'center',
@@ -119,8 +126,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#757083',
     justifyContent: 'center',
+    marginTop: 16,
     padding: 16,
-    width: '88%',
+    width: '100%',
   },
   btnSubmitText: {
     color: '#fff',
