@@ -25,7 +25,7 @@ const Start = ({ navigation }) => {
 
           {/* color headlline and button */}
           <View style={styles.colorWrapper}>
-            <Text style={styles.colorHeadline}>Choose Background Color</Text>
+            <Text style={styles.colorHeadline}>Choose background color</Text>
 
             <View style={styles.colorButtonWrapper}>
               <TouchableOpacity
@@ -50,6 +50,9 @@ const Start = ({ navigation }) => {
           {/* submit button */}
           <TouchableOpacity
             style={styles.btnSubmit}
+            // navigation is passed as prop from App.js Stack.Navigator
+            // onPress activates navigator and switches to defined screen 'Chat'
+            // object as a 2nd parameter representing the data you want to use in 'Chat'
             onPress={() => navigation.navigate('Chat', {
               name: name ? name : 'User',
               color: color ? color : 'white'
