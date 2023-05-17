@@ -19,7 +19,7 @@ const Chat = ({ route, navigation }) => {
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
+          avatar: 'https://via.placeholder.com/140x140/bfbfbf/000000/?text=Avatar',
         },
       },
       {
@@ -46,7 +46,8 @@ const Chat = ({ route, navigation }) => {
       {...props}
       wrapperStyle={{
         right: {
-          backgroundColor: '#000'
+          backgroundColor: '#6e5488',
+          color: '#fff',
         },
         left: {
           backgroundColor: '#FFF'

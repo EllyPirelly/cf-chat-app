@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -16,12 +16,18 @@ const Start = ({ navigation }) => {
 
         <View style={styles.contentWrapper}>
           {/* text input */}
-          <TextInput
-            style={styles.inputText}
-            value={name}
-            onChangeText={setName}
-            placeholder='Enter your name'
-          />
+          <View style={styles.inputWrapper}>
+            <Image
+              source={require('../assets/user-ninja.png')}
+              style={styles.inputImage}
+            />
+            <TextInput
+              style={styles.inputText}
+              value={name}
+              onChangeText={setName}
+              placeholder='Enter your name'
+            />
+          </View>
 
           {/* color headlline and button */}
           <View style={styles.colorWrapper}>
@@ -49,6 +55,10 @@ const Start = ({ navigation }) => {
 
           {/* submit button */}
           <TouchableOpacity
+            accessible={true}
+            accessibilityLabel='Press to start chatting'
+            accessibilityHint='Pressing sends you to the chat.'
+            accessibilityRole='button'
             style={styles.btnSubmit}
             // navigation is passed as prop from App.js Stack.Navigator
             // onPress activates navigator and switches to defined screen 'Chat'
@@ -81,7 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    // justifyContent: 'center',
     justifyContent: 'space-around',
   },
   mainHeadline: {
@@ -99,12 +108,24 @@ const styles = StyleSheet.create({
     padding: 16,
     width: '88%',
   },
-  inputText: {
-    borderWidth: 1,
-    color: '#757083',
-    fontSize: 16,
+  inputWrapper: {
+    alignItems: 'center',
+    borderColor: '#757083',
+    borderRadius: 4,
+    borderWidth: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 16,
     width: '100%',
+  },
+  inputImage: {
+    height: 32,
+    opacity: 0.5,
+    width: 32,
+  },
+  inputText: {
+    fontSize: 16,
+    width: '85%',
   },
   colorHeadline: {
     color: '#757083',
