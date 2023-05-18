@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, ImageBackground, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -35,18 +35,34 @@ const Start = ({ navigation }) => {
 
             <View style={styles.colorButtonWrapper}>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses dark blue as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#3d405b' }]}
                 onPress={() => setColor('#3d405b')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses dark vanilla as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#f2cc8f' }]}
                 onPress={() => setColor('#f2cc8f')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses light purple as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#c9d4e0' }]}
                 onPress={() => setColor('#c9d4e0')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses light olive green as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#81b29a' }]}
                 onPress={() => setColor('#81b29a')}
               ></TouchableOpacity>
@@ -57,7 +73,7 @@ const Start = ({ navigation }) => {
           <TouchableOpacity
             accessible={true}
             accessibilityLabel='Press to start chatting'
-            accessibilityHint='Pressing sends you to the chat.'
+            accessibilityHint='Navigates to the chat.'
             accessibilityRole='button'
             style={styles.btnSubmit}
             // navigation is passed as prop from App.js Stack.Navigator
