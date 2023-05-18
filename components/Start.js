@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Image, ImageBackground, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -16,12 +16,18 @@ const Start = ({ navigation }) => {
 
         <View style={styles.contentWrapper}>
           {/* text input */}
-          <TextInput
-            style={styles.inputText}
-            value={name}
-            onChangeText={setName}
-            placeholder='Enter your name'
-          />
+          <View style={styles.inputWrapper}>
+            <Image
+              source={require('../assets/user-ninja.png')}
+              style={styles.inputImage}
+            />
+            <TextInput
+              style={styles.inputText}
+              value={name}
+              onChangeText={setName}
+              placeholder='Enter your name'
+            />
+          </View>
 
           {/* color headlline and button */}
           <View style={styles.colorWrapper}>
@@ -29,18 +35,34 @@ const Start = ({ navigation }) => {
 
             <View style={styles.colorButtonWrapper}>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses dark blue as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#3d405b' }]}
                 onPress={() => setColor('#3d405b')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses dark vanilla as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#f2cc8f' }]}
                 onPress={() => setColor('#f2cc8f')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses light purple as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#c9d4e0' }]}
                 onPress={() => setColor('#c9d4e0')}
               ></TouchableOpacity>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel='Press to choose background color'
+                accessibilityHint='Pressing chooses light olive green as the background color for the chat.'
+                accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#81b29a' }]}
                 onPress={() => setColor('#81b29a')}
               ></TouchableOpacity>
@@ -49,6 +71,10 @@ const Start = ({ navigation }) => {
 
           {/* submit button */}
           <TouchableOpacity
+            accessible={true}
+            accessibilityLabel='Press to start chatting'
+            accessibilityHint='Navigates to the chat.'
+            accessibilityRole='button'
             style={styles.btnSubmit}
             // navigation is passed as prop from App.js Stack.Navigator
             // onPress activates navigator and switches to defined screen 'Chat'
@@ -61,6 +87,12 @@ const Start = ({ navigation }) => {
             <Text style={styles.btnSubmitText}>Start chatting</Text>
           </TouchableOpacity>
         </View>
+
+        {
+          Platform.OS === 'ios'
+            ? <KeyboardAvoidingView behavior='padding' />
+            : null
+        }
       </View>
     </ImageBackground>
   );
@@ -75,34 +107,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   mainHeadline: {
-    flex: 1,
     color: '#fff',
     fontSize: 44,
     fontWeight: 700,
     marginTop: 64
   },
   contentWrapper: {
-    flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
     flexDirection: 'column',
     justifyContent: 'space-around',
     marginBottom: 64,
-    width: '88%',
-  },
-  inputText: {
-    borderWidth: 1,
-    color: '#757083',
-    fontSize: 16,
     padding: 16,
     width: '88%',
+  },
+  inputWrapper: {
+    alignItems: 'center',
+    borderColor: '#757083',
+    borderRadius: 4,
+    borderWidth: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    width: '100%',
+  },
+  inputImage: {
+    height: 32,
+    opacity: 0.5,
+    width: 32,
+  },
+  inputText: {
+    fontSize: 16,
+    width: '85%',
   },
   colorHeadline: {
     color: '#757083',
     fontSize: 16,
+    marginTop: 16,
   },
   colorButtonWrapper: {
     alignItems: 'center',
@@ -119,8 +163,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#757083',
     justifyContent: 'center',
+    marginTop: 16,
     padding: 16,
-    width: '88%',
+    width: '100%',
   },
   btnSubmitText: {
     color: '#fff',

@@ -39,6 +39,7 @@ The Chat App
   - [Expo CLI](https://docs.expo.dev/get-started/installation/) and Expo Go App
   - [Watchman](https://docs.expo.dev/get-started/installation/#requirements)
 - [Android Studio](https://developer.android.com/studio) to - when as in my case developing on MAC - emulate Android devices
+- Gifted Chat - React Native library specifically created for developing chat apps
 - Google Firestore
 
 ### Heads-up
@@ -48,6 +49,7 @@ The Chat App
 - `expo`
 - `react`
 - `react-native`
+- `react-native-gifted-chat` - library for developing chat apps
 - `react-navigation` - third party library to navigate between screens
 
 ### Dev Dependencies
