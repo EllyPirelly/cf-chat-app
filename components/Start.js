@@ -1,13 +1,36 @@
 import { useState } from 'react';
-import { StyleSheet, Image, ImageBackground, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Alert, Image, ImageBackground, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { getAuth, signInAnonymously } from 'firebase/auth';
+
+const backgroundImage = require('../assets/start-bg-img.png');
+const userNinja = require('../assets/user-ninja.png');
 
 const Start = ({ navigation }) => {
+  const auth = getAuth();
   const [name, setName] = useState('');
-  const [color, setColor] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('');
+
+  // anonymous sign-in logic
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then(result => {
+        // navigation is passed as prop from App.js Stack.Navigator
+        // object as a 2nd parameter representing the data you want
+        navigation.navigate('Chat', {
+          userID: result.user.uid,
+          name: name,
+          backgroundColor: backgroundColor,
+        });
+        Alert.alert('Signed in successfully!');
+      })
+      .catch((error) => {
+        Alert.alert('Unable to sign in, try again later.');
+      })
+  }
 
   return (
     <ImageBackground
-      source={require('../assets/start-bg-img.png')}
+      source={backgroundImage}
       resizeMode='cover'
       style={styles.startImgBg}
     >
@@ -18,7 +41,7 @@ const Start = ({ navigation }) => {
           {/* text input */}
           <View style={styles.inputWrapper}>
             <Image
-              source={require('../assets/user-ninja.png')}
+              source={userNinja}
               style={styles.inputImage}
             />
             <TextInput
@@ -29,7 +52,7 @@ const Start = ({ navigation }) => {
             />
           </View>
 
-          {/* color headlline and button */}
+          {/* color headline and button */}
           <View style={styles.colorWrapper}>
             <Text style={styles.colorHeadline}>Choose background color</Text>
 
@@ -40,31 +63,34 @@ const Start = ({ navigation }) => {
                 accessibilityHint='Pressing chooses dark blue as the background color for the chat.'
                 accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#3d405b' }]}
-                onPress={() => setColor('#3d405b')}
+                onPress={() => setBackgroundColor('#3d405b')}
               ></TouchableOpacity>
+
               <TouchableOpacity
                 accessible={true}
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses dark vanilla as the background color for the chat.'
                 accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#f2cc8f' }]}
-                onPress={() => setColor('#f2cc8f')}
+                onPress={() => setBackgroundColor('#f2cc8f')}
               ></TouchableOpacity>
+
               <TouchableOpacity
                 accessible={true}
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses light purple as the background color for the chat.'
                 accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#c9d4e0' }]}
-                onPress={() => setColor('#c9d4e0')}
+                onPress={() => setBackgroundColor('#c9d4e0')}
               ></TouchableOpacity>
+
               <TouchableOpacity
                 accessible={true}
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses light olive green as the background color for the chat.'
                 accessibilityRole='button'
                 style={[styles.colorBtn, { backgroundColor: '#81b29a' }]}
-                onPress={() => setColor('#81b29a')}
+                onPress={() => setBackgroundColor('#81b29a')}
               ></TouchableOpacity>
             </View>
           </View>
@@ -76,14 +102,8 @@ const Start = ({ navigation }) => {
             accessibilityHint='Navigates to the chat.'
             accessibilityRole='button'
             style={styles.btnSubmit}
-            // navigation is passed as prop from App.js Stack.Navigator
-            // onPress activates navigator and switches to defined screen 'Chat'
-            // object as a 2nd parameter representing the data you want to use in 'Chat'
-            onPress={() => navigation.navigate('Chat', {
-              name: name ? name : 'User',
-              color: color ? color : 'white'
-            })}>
-
+            // onPress activates navigator and navigates to defined screen 'Chat'
+            onPress={signInUser}>
             <Text style={styles.btnSubmitText}>Start chatting</Text>
           </TouchableOpacity>
         </View>
