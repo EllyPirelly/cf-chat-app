@@ -51,6 +51,8 @@ The Chat App
 - `react`
 - `react-native`
 - `react-native-gifted-chat` - library that includes the design and layout for the chat screen
+- `@react-native-async-storage/async-storage` - to store messages offline
+- `@react-native-community/netinfo` - to check if user is on- or offline
 - `react-navigation` - third party library to navigate between screens
 
 ### Dev Dependencies
