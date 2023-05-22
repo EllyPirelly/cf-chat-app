@@ -40,16 +40,17 @@ The Chat App
   - [Watchman](https://docs.expo.dev/get-started/installation/#requirements)
 - [Android Studio](https://developer.android.com/studio) to - when as in my case developing on MAC - emulate Android devices
 - Gifted Chat - React Native library specifically created for developing chat apps
-- Google Firestore
+- Google Firestore/Firebase
 
 ### Heads-up
 - at time of writing to use Expo CLI you need to downgrade Node to `16.19.0`
 
 ### Dependencies
-- `expo-cli`
+- `expo-cli` - to develop and test React Native Apps
+- `firebase` - to enable real-time chat/saving of messages in Chat App (database) and to enable anonymous sign-in
 - `react`
 - `react-native`
-- `react-native-gifted-chat` - library for developing chat apps
+- `react-native-gifted-chat` - library that includes the design and layout for the chat screen
 - `react-navigation` - third party library to navigate between screens
 
 ### Dev Dependencies
