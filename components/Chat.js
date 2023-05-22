@@ -54,6 +54,13 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     // isConnected prop as a dependency value allows the component to call the callback of useEffect whenever the isConnected props' value changes
   }, [isConnected]);
 
+  // loads messages from AsyncStorage
+  // called if isConnected in useEffect is false
+  const loadCachedMessages = async () => {
+    const cachedMessages = await AsyncStorage.getItem('messages') || [];
+    setMessages(JSON.parse(cachedMessages));
+  }
+
   // caches messages in AsyncStorage
   const cacheMessages = async (messagesToCache) => {
     try {
@@ -63,22 +70,18 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     }
   };
 
-  // loads messages from AsyncStorage
-  // called if isConnected in useEffect is false
-  const loadCachedMessages = async () => {
-    const cachedMessages = await AsyncStorage.getItem('messages') || [];
-    setMessages(JSON.parse(cachedMessages));
-  }
-
   // adds messages to Firestore database
   const addMessage = async (newMessage) => {
     const newMessageRef = await addDoc(collection(db, 'messages'), newMessage[0]);
 
-    if (newMessageRef.id) {
-      setMessages([newMessage, ...messages]);
-    } else {
-      Alert.alert('Unable to add. Please try later.');
-    }
+    if (!newMessageRef.id) {
+      Alert.alert('there is an error');
+    };
+    // if (newMessageRef.id) {
+    //   setMessages([newMessage, ...messages]);
+    // } else {
+    //   Alert.alert('Unable to add. Please try later.');
+    // }
   };
 
   // sends new messages
@@ -104,13 +107,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
 
   // Gifted Chat's input toolbar
   const renderInputToolbar = (props) => {
-    if (isConnected) {
-      return <InputToolbar
-        {...props}
-      />;
-    } else {
-      return null;
-    }
+    if (isConnected) return <InputToolbar {...props} />;
+    else return null;
   };
 
   return (
