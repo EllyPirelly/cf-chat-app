@@ -46,7 +46,7 @@ The Chat App
 - at time of writing to use Expo CLI you need to downgrade Node to `16.19.0`
 
 ### Dependencies
-- `expo`
+- `expo-cli`
 - `react`
 - `react-native`
 - `react-native-gifted-chat` - library for developing chat apps
