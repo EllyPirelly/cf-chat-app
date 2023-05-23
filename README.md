@@ -45,12 +45,15 @@ The Chat App
 ### Heads-up
 - at time of writing to use Expo CLI you need to downgrade Node to `16.19.0`
 
+### Global
+- `expo-CLI` - to create new projects and start running Expo
+
 ### Dependencies
-- `expo-cli` - to develop and test React Native Apps
+- `expo` - to set up, develop and test React Native Apps
 - `firebase` - to enable real-time chat/saving of messages in Chat App (database) and to enable anonymous sign-in
 - `react`
-- `react-native`
-- `react-native-gifted-chat` - library that includes the design and layout for the chat screen
+- `react-native` - to build apps for Android and iOS quickly with one codebase
+- `react-native-gifted-chat` - React Native library specifically created for developing chat apps
 - `@react-native-async-storage/async-storage` - to store messages offline
 - `@react-native-community/netinfo` - to check if user is on- or offline
 - `react-navigation` - third party library to navigate between screens

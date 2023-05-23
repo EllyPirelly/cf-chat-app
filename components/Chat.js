@@ -92,12 +92,15 @@ const Chat = ({ route, navigation, db, isConnected }) => {
   // returns altered version of Gifted Chat's speech bubble
   const renderBubble = (props) => {
     return <Bubble
+      // inheriting props
       {...props}
       wrapperStyle={{
+        // sender bubble
         right: {
           backgroundColor: '#6e5488',
           color: '#fff',
         },
+        // recipient bubble
         left: {
           backgroundColor: '#FFF'
         }
