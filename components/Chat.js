@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Alert, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';
-import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
 
-const Chat = ({ route, navigation, db, isConnected }) => {
+const Chat = ({ route, navigation, db, isConnected, storage }) => {
   // accesses name, backgroundColor, userID via route.params
   // route is passed as prop from App.js Stack.Navigator
   const { name, backgroundColor, userID } = route.params;
@@ -17,8 +17,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
   useEffect(() => {
     // checks internet connection
     if (isConnected === true) {
-      navigation.setOptions({ title: name });
 
+      navigation.setOptions({ title: name });
       // unregisters current onSnapshot() listener to avoid registering multiple listeners when useEffect code is re-executed
       if (unsubscribeMessages) unsubscribeMessages();
       unsubscribeMessages = null;
@@ -77,13 +77,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     const newMessageRef = await addDoc(collection(db, 'messages'), newMessage[0]);
 
     if (!newMessageRef.id) {
-      Alert.alert('there is an error');
+      Alert.alert('Unable to add. Please try again later.');
     };
-    // if (newMessageRef.id) {
-    //   setMessages([newMessage, ...messages]);
-    // } else {
-    //   Alert.alert('Unable to add. Please try later.');
-    // }
   };
 
   // sends new messages
@@ -118,7 +113,10 @@ const Chat = ({ route, navigation, db, isConnected }) => {
 
   // creates circle button
   const renderCustomActions = (props) => {
-    return <CustomActions {...props} />;
+    return <CustomActions
+      storage={storage}
+      {...props}
+    />;
   };
 
   // creates MapView for location data
@@ -142,7 +140,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
           }}
         />
       );
-    }
+    };
+
     return null;
   };
 
@@ -168,7 +167,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       }
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
