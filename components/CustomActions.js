@@ -117,21 +117,24 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
 
 const styles = StyleSheet.create({
   container: {
-    width: 26,
-    height: 26,
+    width: 32,
+    height: 32,
     marginLeft: 10,
     marginBottom: 10,
+    marginTop: 10,
   },
   wrapper: {
-    borderRadius: 13,
-    borderColor: '#b2b2b2',
+    borderRadius: 16,
+    borderColor: '#757083',
     borderWidth: 2,
     flex: 1,
+    justifyContent: 'center',
+
   },
   iconText: {
-    color: '#b2b2b2',
+    color: '#757083',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 16,
     backgroundColor: 'transparent',
     textAlign: 'center',
   },

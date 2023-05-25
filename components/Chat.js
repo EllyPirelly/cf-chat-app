@@ -6,6 +6,8 @@ import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firesto
 import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
 
+import avatar from '../assets/user-ninja-circle-140x140.png';
+
 const Chat = ({ route, navigation, db, isConnected, storage }) => {
   // accesses name, backgroundColor, userID via route.params
   // route is passed as prop from App.js Stack.Navigator
@@ -157,6 +159,7 @@ const Chat = ({ route, navigation, db, isConnected, storage }) => {
         user={{
           _id: userID,
           name: name,
+          avatar: avatar
         }}
       />
 
