@@ -10,7 +10,7 @@ The App will provide users with a chat interface that includes options to:
 
 This Chat App has been built as a task for Achievement 5 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
 
-ToDo: Screenshots
+![Screenshot of different screens of the Chat App](/assets/screenshots/screenshot-chat-app.png)
 
 ### Technical requirements
 The Chat App
@@ -44,9 +44,9 @@ The Chat App
   - a user can enter their name and choose a background color for the chat screen
 - chat screen
   - display of chat conversation, an input field, a submit button
-  - picking image off of device's image library
+  - picking an image off of device's image library
   - taking photo with device's camera
-  - sending images via chat conversation
+  - sending an image via chat conversation
   - retaining and sending geo location data via chat conversation
 - storing data on- and offline to enable users to read their messages while being offline
 - disallow the creation of new messages when users are offline
@@ -75,58 +75,6 @@ The Chat App
 At time of writing to use Expo CLI you need to downgrade Node to `16.19.0` <br>
 Eventhough [Expo's site is a bit misleading regarding LTS](https://docs.expo.dev/get-started/installation/) if you try latest you will run into an error. <br>
 [Also see here.](https://github.com/expo/expo/issues/21026)
-
-### Set-up
-#### Expo
-- create an Expo account
-- download the Expo app
-
-#### Android Studio
-Set up Android Emulator
-- download [Android Studio](https://developer.android.com/studio)
-- set up "Install Type" to "custom"
-- in "Select default JDK Location" leave location as is
-- in "SDK Components Setup" make sure "Android Virtual Device" is selected and keep Android SDK Location as is
-- accept all license agreements
-
-Configure Android Studio
-- in Welcome Screen, select "SDK Manager" from dropdown
-- in left side navigation, select "Android SDK"
-- select the corresponding Google Play Systems Image to install (will be needed to install some utility apps)
-  - if you have an ARM-based chip such as M1 then "Google Play ARM 64 ... System Image" is most suitable
-- ensure the Google Play System Image selected corresponds to your OS
-- still in left side navigation "Android SDK", select "SDK" menu tab
-- check that you have all necessary Android SDK Build Tools installed
-- confirm all license agreements
-
-Add location of the Android SDK to your PATH
-- copy the path to your "Android SDK Location" (something like `/Users/username/Library/Android/sdk`)
-- in my case as I use zshrc: find and open your `.zshrc` file
-- add following to the bottom of the file and save the file:
-```
-// Android SDK
-export ANDROID_SDK=/Users/username/Library/Android/sdk
-
-// sub directory of Android SDK
-export PATH=$ANDROID_SDK/platform-tools:$PATH
-```
-
-Virtual Device Manager
-- in Welcome Screen, select "Virtual Device Manager" from dropdown
-- select "Create Virtual Device"
-- in "Select Hardware" pick whichever mobile phone device has a Google Play Store icon next to it and isn't too old
-
-System Image Interface
-- in Virtual Device Configuration
-- click on the "recommended" menu tab and select the system image that includes the Google Play Store in it and has the same API level as the system image you downloaded earlier
-- in "Show Advanced Settings" change your emulator's storage size
-- adjust the values of Internal Storage and SD Card to 4096 MB each
-
-Your emulator should now show up as a new virtual device in the device manager. <br>
-
-#### Google Firebase
-- Todo
-
 
 ### Global
 - `expo-CLI` - to create new projects and start running Expo
@@ -163,7 +111,7 @@ Your emulator should now show up as a new virtual device in the device manager. 
 - `expo whoami` will check the currently logged-in account
 - `npm start` or `expo start` will start the project (the Metro Bundler)
 ![Screenshot of Metro Bundler](/assets/screenshots//screenshot-metro-bundler.png)
-- on MAC, you don't need the "full" XCode version and can hit `n`
+- on MAC, you do NOT need the "full" XCode version to start the Android or iOS simulator and can hit `n`
 - then open your iPhone
 - open the Expo Go App
 - open the project, this will start the building of files
