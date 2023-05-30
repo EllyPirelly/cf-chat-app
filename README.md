@@ -58,6 +58,7 @@ The Chat App
 - [React Native](https://github.com/facebook/react-native)
   - JSX
   - JavaScript
+- [React Navigation](https://reactnavigation.org/docs/getting-started/)
 - [Expo](https://expo.dev/)
   - [Expo CLI](https://docs.expo.dev/get-started/installation/) and Expo Go App
   - [Watchman](https://docs.expo.dev/get-started/installation/#requirements)
