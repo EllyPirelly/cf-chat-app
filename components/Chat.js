@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Alert, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from 'react-native-gifted-chat';
-import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
+import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
-const Chat = ({ route, navigation, db, isConnected }) => {
+import avatar from '../assets/user-ninja-circle-140x140.png';
+
+const Chat = ({ route, navigation, db, isConnected, storage }) => {
   // accesses name, backgroundColor, userID via route.params
   // route is passed as prop from App.js Stack.Navigator
   const { name, backgroundColor, userID } = route.params;
@@ -15,8 +19,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
   useEffect(() => {
     // checks internet connection
     if (isConnected === true) {
-      navigation.setOptions({ title: name });
 
+      navigation.setOptions({ title: name });
       // unregisters current onSnapshot() listener to avoid registering multiple listeners when useEffect code is re-executed
       if (unsubscribeMessages) unsubscribeMessages();
       unsubscribeMessages = null;
@@ -75,13 +79,8 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     const newMessageRef = await addDoc(collection(db, 'messages'), newMessage[0]);
 
     if (!newMessageRef.id) {
-      Alert.alert('there is an error');
+      Alert.alert('Unable to add. Please try again later.');
     };
-    // if (newMessageRef.id) {
-    //   setMessages([newMessage, ...messages]);
-    // } else {
-    //   Alert.alert('Unable to add. Please try later.');
-    // }
   };
 
   // sends new messages
@@ -89,7 +88,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     addMessage(newMessages);
   };
 
-  // returns altered version of Gifted Chat's speech bubble
+  // altered version of Gifted Chat's speech bubble
   const renderBubble = (props) => {
     return <Bubble
       // inheriting props
@@ -108,10 +107,44 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     />
   };
 
-  // Gifted Chat's input toolbar
+  // altered version of Gifted Chat's input toolbar
   const renderInputToolbar = (props) => {
     if (isConnected) return <InputToolbar {...props} />;
     else return null;
+  };
+
+  // creates circle button
+  const renderCustomActions = (props) => {
+    return <CustomActions
+      storage={storage}
+      {...props}
+    />;
+  };
+
+  // creates MapView for location data
+  const renderCustomView = (props) => {
+    const { currentMessage } = props;
+
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{
+            width: 150,
+            height: 100,
+            borderRadius: 13,
+            margin: 3
+          }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    };
+
+    return null;
   };
 
   return (
@@ -119,11 +152,14 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       <GiftedChat
         renderBubble={renderBubble}
         renderInputToolbar={renderInputToolbar}
+        renderActions={renderCustomActions}
+        renderCustomView={renderCustomView}
         messages={messages}
         onSend={messages => onSend(messages)}
         user={{
           _id: userID,
           name: name,
+          avatar: avatar
         }}
       />
 
@@ -134,7 +170,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       }
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
