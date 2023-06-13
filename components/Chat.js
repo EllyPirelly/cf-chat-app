@@ -6,7 +6,7 @@ import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firesto
 import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
 
-import avatar from '../assets/user-ninja-circle-140x140.png';
+import avatar from '../assets/user-flower-circle-140x140.png';
 
 const Chat = ({ route, navigation, db, isConnected, storage }) => {
   // accesses name, backgroundColor, userID via route.params
@@ -96,7 +96,7 @@ const Chat = ({ route, navigation, db, isConnected, storage }) => {
       wrapperStyle={{
         // sender bubble
         right: {
-          backgroundColor: '#6e5488',
+          backgroundColor: '#4c572c',
           color: '#fff',
         },
         // recipient bubble

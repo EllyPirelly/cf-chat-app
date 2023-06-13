@@ -125,14 +125,14 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderRadius: 16,
-    borderColor: '#757083',
+    borderColor: '#4c572c',
     borderWidth: 2,
     flex: 1,
     justifyContent: 'center',
 
   },
   iconText: {
-    color: '#757083',
+    color: '#4c572c',
     fontWeight: 'bold',
     fontSize: 16,
     backgroundColor: 'transparent',

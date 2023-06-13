@@ -3,7 +3,7 @@ import { StyleSheet, Alert, Image, ImageBackground, KeyboardAvoidingView, Text, 
 import { getAuth, signInAnonymously } from 'firebase/auth';
 
 const backgroundImage = require('../assets/start-bg-img.png');
-const userNinja = require('../assets/user-ninja.png');
+const userFlower = require('../assets/user-flower.png');
 
 const Start = ({ navigation }) => {
   const auth = getAuth();
@@ -41,7 +41,7 @@ const Start = ({ navigation }) => {
           {/* text input */}
           <View style={styles.inputWrapper}>
             <Image
-              source={userNinja}
+              source={userFlower}
               style={styles.inputImage}
             />
             <TextInput
@@ -62,8 +62,8 @@ const Start = ({ navigation }) => {
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses dark blue as the background color for the chat.'
                 accessibilityRole='button'
-                style={[styles.colorBtn, { backgroundColor: '#3d405b' }]}
-                onPress={() => setBackgroundColor('#3d405b')}
+                style={[styles.colorBtn, { backgroundColor: '#fedb72' }]}
+                onPress={() => setBackgroundColor('#fedb72')}
               ></TouchableOpacity>
 
               <TouchableOpacity
@@ -71,8 +71,8 @@ const Start = ({ navigation }) => {
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses dark vanilla as the background color for the chat.'
                 accessibilityRole='button'
-                style={[styles.colorBtn, { backgroundColor: '#f2cc8f' }]}
-                onPress={() => setBackgroundColor('#f2cc8f')}
+                style={[styles.colorBtn, { backgroundColor: '#edbf9e' }]}
+                onPress={() => setBackgroundColor('#edbf9e')}
               ></TouchableOpacity>
 
               <TouchableOpacity
@@ -89,8 +89,8 @@ const Start = ({ navigation }) => {
                 accessibilityLabel='Press to choose background color'
                 accessibilityHint='Pressing chooses light olive green as the background color for the chat.'
                 accessibilityRole='button'
-                style={[styles.colorBtn, { backgroundColor: '#81b29a' }]}
-                onPress={() => setBackgroundColor('#81b29a')}
+                style={[styles.colorBtn, { backgroundColor: '#c3cfa0' }]}
+                onPress={() => setBackgroundColor('#c3cfa0')}
               ></TouchableOpacity>
             </View>
           </View>
@@ -121,8 +121,8 @@ const Start = ({ navigation }) => {
 const styles = StyleSheet.create({
   startImgBg: {
     flex: 1,
-    // as a fallback?
-    backgroundColor: '#fdf6e5',
+    // as a fallback
+    backgroundColor: '#ffffb7',
   },
   container: {
     flex: 1,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   mainHeadline: {
-    color: '#fff',
+    color: '#a44a3f',
     fontSize: 44,
     fontWeight: 700,
     marginTop: 64
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     alignItems: 'center',
-    borderColor: '#757083',
+    borderColor: '#4c572c',
     borderRadius: 4,
     borderWidth: 2,
     flexDirection: 'row',
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     width: '85%',
   },
   colorHeadline: {
-    color: '#757083',
+    color: '#4c572c',
     fontSize: 16,
     marginTop: 16,
   },
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   btnSubmit: {
     alignItems: 'center',
-    backgroundColor: '#757083',
+    backgroundColor: '#4c572c',
     justifyContent: 'center',
     marginTop: 16,
     padding: 16,

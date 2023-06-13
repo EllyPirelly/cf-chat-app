@@ -10,7 +10,7 @@ The App will provide users with a chat interface that includes options to:
 
 This Chat App has been built as a task for Achievement 5 in [Career Foundry's Full-Stack Web Development Program](https://careerfoundry.com/en/courses/become-a-web-developer/).
 
-![Screenshot of different screens of the Chat App](/assets/screenshots/screenshot-chat-app.png)
+![Screenshot of different screens of the Chat App](/assets/screenshots/screenshot-chat-app-new.png)
 
 ### Technical requirements
 The Chat App
@@ -53,6 +53,9 @@ The Chat App
 
 ### Given design
 ![Screenshot of given design](/assets/screenshots/screenshot-given-design.png)
+
+#### Passed assignment with following, changed design afterwards
+![Screenshot of different screens of the Chat App](/assets/screenshots/screenshot-chat-app.png)
 
 ### Languages, Libraries, Frameworks, Tools
 - [React Native](https://github.com/facebook/react-native)
